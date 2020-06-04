@@ -1,5 +1,6 @@
-import React, { PropTypes } from "react";
+import React from "react";
 import Button from "./elements/Button";
+import PropTypes from "prop-types";
 
 const AdoptButton = ({ available, onAdoptClick }) => {
   if (!available) {

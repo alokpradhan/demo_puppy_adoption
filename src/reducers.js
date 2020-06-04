@@ -27,11 +27,6 @@ const puppies = (state = [], action) => {
       return state.map(puppy => {
         if (puppy.id === action.data.id) {
           return action.data;
-          // How do I create a partial update i.e. PATCH
-          // return {
-          //   ...puppy,
-          //   data: action.data
-          // };
         }
         return puppy;
       });

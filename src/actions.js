@@ -5,13 +5,14 @@ export const UPDATE_PUPPY = "UPDATE_PUPPY";
 export const SET_AVAILABILITY_FILTER = "SET_AVAILABILITY_FILTER";
 
 // Action creators
-let nextPuppyId = 1;
+let nextPuppyId = 4;
 export const createPuppy = data => {
   return {
     type: CREATE_PUPPY,
     data: {
       ...data,
-      id: nextPuppyId++
+      id: nextPuppyId++,
+      available: true
     }
   };
 };
@@ -30,7 +31,7 @@ export const updatePuppy = data => {
   };
 };
 
-export const setAvailablityFilter = data => {
+export const setAvailabilityFilter = data => {
   return {
     type: SET_AVAILABILITY_FILTER,
     data

@@ -3,65 +3,25 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
-
+import "bootstrap/dist/css/bootstrap.css";
 import { createStore } from "redux";
 import puppiesApp from "./reducers";
-// Import action creators
-import {
-  createPuppy,
-  adoptPuppy,
-  updatePuppy,
-  setAvailablityFilter
-} from "./actions";
-
 import { Provider } from "react-redux";
 
-let store = createStore(puppiesApp);
+const puppiesFromServer = [
+  { name: "Sean", breed: "Terrier", avatar: "", available: true, id: 1 },
+  { name: "Priscilla", breed: "Shepard", avatar: "", available: true, id: 2 },
+  { name: "Harry", breed: "Hound", avatar: "", available: true, id: 3 }
+];
 
-let unsubscribe = store.subscribe(() => {
-  // Log new state to console
-  console.log(store.getState());
+let store = createStore(puppiesApp, {
+  puppies: puppiesFromServer
 });
 
-console.log("initial state: ", store.getState());
-
-store.dispatch(
-  createPuppy({
-    name: "Sean C.",
-    breed: "Terrier",
-    available: true
-  })
-);
-
-store.dispatch(
-  createPuppy({
-    name: "Priscilla Hanz",
-    breed: "German Shepard",
-    available: true
-  })
-);
-
-store.dispatch(adoptPuppy(2));
-
-store.dispatch(
-  updatePuppy({
-    id: 1,
-    name: "Sean Connery",
-    breed: "Terrier",
-    available: true
-  })
-);
-
-store.dispatch(setAvailablityFilter("SHOW_ADOPTED"));
-
-unsubscribe();
-
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById("root")
 );
 
